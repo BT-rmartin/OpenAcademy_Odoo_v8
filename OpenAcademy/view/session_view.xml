@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+   		 <record model="ir.ui.view" id="session_tree">
+			<field name="name">session tree view</field>
+			<field name="model">openacademy.session</field>
+			<field name="arch" type="xml">
+	
+				<tree string="Session" version="7.0">
+					<field name="name"/>
+					<field name="course"/>	
+					<field name="instructor"/>
+					<field name="start_date"/>
+					<field name="seats"/>							
+					<field name="taken_seats"/>					
+				</tree>
+	
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="session_form">
+			<field name="name">session form view</field>
+			<field name="model">openacademy.session</field>
+			<field name="arch" type="xml">
+	
+				<form string="Session" version="7.0">
+					<sheet>
+						<h1>
+							<field name="name" placeholder="Session Name" />
+						</h1>
+						<group>
+							<field name="course"/>	
+							<field name="instructor"/>
+							<field name="active" invisible="1"/>
+							<field name="start_date"/>
+							<field name="duration"/>
+							<field name="seats"/>							
+						</group>
+						<notebook>
+							<page string="Attendees">
+								<group>
+									<field name="taken_seats"/>
+								</group>
+								<newline/>
+								<field name="attendees" />
+							</page>
+						</notebook>
+						
+					</sheet>
+				</form>
+	
+			</field>
+		</record>
+    </data>
+</openerp>

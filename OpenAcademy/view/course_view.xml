@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+       
+		<record model="ir.ui.view" id="course_form">
+			<field name="name">course form view</field>
+			<field name="model">openacademy.course</field>
+			<field name="arch" type="xml">
+	
+				<form string="Course" version="7.0">
+					<sheet>
+						<h1>
+							<field name="name" placeholder="Course Title" />
+						</h1>
+						<group>
+							<field name="description"/>
+							<field name="responsible"/>						
+						</group>
+						<notebook>
+							<page string="Sessions">
+								<field name="sessions" />
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+	
+			</field>
+		</record>
+    </data>
+</openerp>
