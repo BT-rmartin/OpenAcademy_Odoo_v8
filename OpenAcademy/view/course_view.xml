@@ -14,11 +14,11 @@
 						</h1>
 						<group>
 							<field name="description"/>
-							<field name="responsible"/>						
+							<field name="responsible_id"/>						
 						</group>
 						<notebook>
 							<page string="Sessions">
-								<field name="sessions" />
+								<field name="session_ids" />
 							</page>
 						</notebook>
 					</sheet>

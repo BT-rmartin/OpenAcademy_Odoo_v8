@@ -9,8 +9,8 @@
 	
 				<tree string="Session" version="7.0">
 					<field name="name"/>
-					<field name="course"/>	
-					<field name="instructor"/>
+					<field name="course_id"/>	
+					<field name="instructor_id"/>
 					<field name="start_date"/>
 					<field name="seats"/>							
 					<field name="taken_seats"/>					
@@ -30,8 +30,8 @@
 							<field name="name" placeholder="Session Name" />
 						</h1>
 						<group>
-							<field name="course"/>	
-							<field name="instructor"/>
+							<field name="course_id"/>	
+							<field name="instructor_id"/>
 							<field name="active" invisible="1"/>
 							<field name="start_date"/>
 							<field name="duration"/>
@@ -43,7 +43,7 @@
 									<field name="taken_seats"/>
 								</group>
 								<newline/>
-								<field name="attendees" />
+								<field name="attendee_ids" />
 							</page>
 						</notebook>
 						

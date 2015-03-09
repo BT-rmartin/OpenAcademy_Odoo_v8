@@ -32,11 +32,11 @@ class Session(models.Model):
     seats = fields.Integer(string="Number of Seats")
     
     # link sessions to courses and instructors
-    course = fields.Many2one('openacademy.course', required=True)
-    instructor = fields.Many2one('res.partner')
+    course_id = fields.Many2one('openacademy.course', required=True)
+    instructor_id = fields.Many2one('res.partner')
     
     # link sessions to partners for attendee subscription:
-    attendees = fields.Many2many('res.partner')
+    attendee_ids = fields.Many2many('res.partner')
     
     # example of computed (functional) field
     taken_seats = fields.Float(compute='_compute_taken_seats',string='Percentage of Taken Seats')
@@ -46,10 +46,10 @@ class Session(models.Model):
     start_date = fields.Date(default=fields.Date.today)
 
     @api.one
-    @api.depends('attendees', 'seats')
+    @api.depends('attendee_ids', 'seats')
     def _compute_taken_seats(self):
         if self.seats:
-            self.taken_seats = 100.0 * len(self.attendees) / self.seats
+            self.taken_seats = 100.0 * len(self.attendee_ids) / self.seats
         else:
             self.taken_seats = 0.0
         
@@ -58,23 +58,23 @@ class Session(models.Model):
 
         for session in self:
             print session.name
-            print session.course.name
+            print session.course_id.name
         
         assert self.name == self[0].name
     
     # example of onchange
      
-    @api.onchange('course')
+    @api.onchange('course_id')
     def _onchange_course(self):
         if not self.name:
-            self.name = self.course.name     
+            self.name = self.course_id.name     
 
     # example of constraint
                 
     @api.one
-    @api.constrains('instructor', 'attendees')
+    @api.constrains('instructor_id', 'attendee_ids')
     def _check_instructor(self):
-        if self.instructor in self.attendees:
+        if self.instructor_id in self.attendee_ids:
             raise Warning("Instructor of session '%s' "
                 "cannot attend its own session" % self.name)
 
